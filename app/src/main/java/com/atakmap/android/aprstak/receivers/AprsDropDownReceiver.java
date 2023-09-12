@@ -104,7 +104,7 @@ public class AprsDropDownReceiver extends DropDownReceiver implements
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     AprsUtility.useTNC = b;
-                    SharedPreferences sharedPref = PluginLifecycle.activity.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
+                    SharedPreferences sharedPref = context.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putBoolean("useTNC", b);
                     editor.apply();
@@ -117,14 +117,14 @@ public class AprsDropDownReceiver extends DropDownReceiver implements
                 if (!aprsUtility.aprsdroid_running) {
                     // make sure APRSDroid is running
                     Intent i = new Intent("org.aprsdroid.app.SERVICE").setPackage("org.aprsdroid.app");
-                    PluginLifecycle.activity.getApplicationContext().startForegroundService(i);
+                    context.getApplicationContext().startForegroundService(i);
                 }
             } else {
                 enableTNCSwitch.setChecked(false);
                 if (aprsUtility.aprsdroid_running) {
                     // make sure APRSDroid is stopped
                     Intent i = new Intent("org.aprsdroid.app.SERVICE_STOP").setPackage("org.aprsdroid.app");
-                    PluginLifecycle.activity.getApplicationContext().startForegroundService(i);
+                    context.getApplicationContext().startForegroundService(i);
                 }
 
             }
@@ -133,7 +133,7 @@ public class AprsDropDownReceiver extends DropDownReceiver implements
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     AprsUtility.usePSK = b;
-                    SharedPreferences sharedPref = PluginLifecycle.activity.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
+                    SharedPreferences sharedPref = context.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putBoolean("usePSK", b);
                     editor.apply();
@@ -158,7 +158,7 @@ public class AprsDropDownReceiver extends DropDownReceiver implements
                 @Override
                 public void afterTextChanged(Editable s) {
                     Log.d(TAG, String.format("PSK Text: %s", s.toString()));
-                    SharedPreferences sharedPref = PluginLifecycle.activity.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
+                    SharedPreferences sharedPref = context.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString("PSKText", s.toString());
                     editor.apply();
@@ -179,7 +179,7 @@ public class AprsDropDownReceiver extends DropDownReceiver implements
                     Log.d(TAG, String.format("APRS Frequency: %s", s.toString()));
                     Intent i = new Intent("org.aprsdroid.app.FREQUENCY").setPackage("org.aprsdroid.app");
                     i.putExtra("frequency", s.toString());
-                    PluginLifecycle.activity.getApplicationContext().startForegroundService(i);
+                    context.getApplicationContext().startForegroundService(i);
                 }
             });
 
@@ -211,7 +211,7 @@ public class AprsDropDownReceiver extends DropDownReceiver implements
             autoBroadcastNPInterval.setWrapSelectorWheel(false);
             autoBroadcastNPInterval.setDisplayedValues(delays);
 
-            SharedPreferences sharedPref = PluginLifecycle.activity.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
+            SharedPreferences sharedPref = context.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
             int delay = sharedPref.getInt("autoBroadcastInterval", 0);
             if (delay == 0)
                 autoBroadcastNPInterval.setValue(2);
@@ -221,7 +221,7 @@ public class AprsDropDownReceiver extends DropDownReceiver implements
                 @Override
                 public void onValueChange(NumberPicker picker, final int oldVal, final int newVal) {
                     Log.d(TAG, String.format("AutoBroadcast Interval: %s", delays[newVal]));
-                    SharedPreferences sharedPref = PluginLifecycle.activity.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
+                    SharedPreferences sharedPref = context.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putInt("autoBroadcastInterval", Integer.parseInt(delays[newVal]));
                     editor.apply();

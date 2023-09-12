@@ -27,10 +27,12 @@ public class APRSMessageHandler implements CommsMapComponent.PreSendProcessor {
 
     private static final String TAG = "APRSMessageHandler";
     private final CotShrinker cotShrinker;
+    private Context context;
 
-    public APRSMessageHandler(CotShrinker cotShrinker) {
+    public APRSMessageHandler(CotShrinker cotShrinker, Context context) {
         CommsMapComponent.getInstance().registerPreSendProcessor(this);
         this.cotShrinker = cotShrinker;
+        this.context = context;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class APRSMessageHandler implements CommsMapComponent.PreSendProcessor {
                 com.atakmap.coremap.log.Log.i(TAG, "PSK enabled");
                 ByteBuffer payload;
                 byte[] PSKhash, cipherText;
-                SharedPreferences sharedPref = PluginLifecycle.activity.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
+                SharedPreferences sharedPref = context.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
                 String psk = sharedPref.getString("PSKText", "atakatak");
                 try {
                     MessageDigest digest = MessageDigest.getInstance("MD5");
@@ -74,7 +76,7 @@ public class APRSMessageHandler implements CommsMapComponent.PreSendProcessor {
             Log.d(TAG, "Base64 string len: " + encodedString.length());
             Intent i = new Intent("org.aprsdroid.app.SEND_PACKET").setPackage("org.aprsdroid.app");
             i.putExtra("data", ">M," + encodedString);
-            PluginLifecycle.activity.getApplicationContext().startForegroundService(i);
+            context.getApplicationContext().startForegroundService(i);
         }
     }
 }

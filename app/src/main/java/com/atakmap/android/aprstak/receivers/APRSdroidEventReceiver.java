@@ -136,7 +136,7 @@ public class APRSdroidEventReceiver extends BroadcastReceiver {
 							if (AprsUtility.usePSK) {
 								Log.i(TAG, "PSK enabled");
 								byte[] PSKhash;
-								SharedPreferences sharedPref = PluginLifecycle.activity.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
+								SharedPreferences sharedPref = context.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
 								String psk = sharedPref.getString("PSKText", "atakatak");
 								try {
 									MessageDigest digest = MessageDigest.getInstance("MD5");

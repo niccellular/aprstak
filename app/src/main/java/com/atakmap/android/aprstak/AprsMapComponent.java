@@ -97,7 +97,7 @@ public class AprsMapComponent extends DropDownMapComponent implements AprsUtilit
 
         this.aprsCotArray = new APRSCotArray();
 
-        this.aprsMessageHandler = new APRSMessageHandler(cotShrinker);
+        this.aprsMessageHandler = new APRSMessageHandler(cotShrinker, context);
     }
 
     public static APRSCotArray getAprsCotArray() {

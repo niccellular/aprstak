@@ -207,7 +207,7 @@ public class AprsUtility extends DropDownReceiver implements DropDown.OnStateLis
                         Log.i(TAG, "PSK enabled");
                         ByteBuffer payload;
                         byte[] PSKhash, cipherText;
-                        SharedPreferences sharedPref = PluginLifecycle.activity.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPref = context.getSharedPreferences("aprs-prefs", Context.MODE_PRIVATE);
                         String psk = sharedPref.getString("PSKText", "atakatak");
                         try {
                             MessageDigest digest = MessageDigest.getInstance("MD5");
@@ -239,7 +239,7 @@ public class AprsUtility extends DropDownReceiver implements DropDown.OnStateLis
                     Log.d(TAG, "calling SEND_PACKET: " + encodedString);
                     Intent i = new Intent("org.aprsdroid.app.SEND_PACKET").setPackage("org.aprsdroid.app");
                     i.putExtra("data", String.format(">M,%s", encodedString));
-                    PluginLifecycle.activity.getApplicationContext().startForegroundService(i);
+                    context.getApplicationContext().startForegroundService(i);
                 }
             }
             sendList.clear();
@@ -250,7 +250,7 @@ public class AprsUtility extends DropDownReceiver implements DropDown.OnStateLis
         Log.d(TAG, "startAutoBeacon"); 
         isAutoBeaconing = true;
 
-        ab = new AutoBeacon();
+        ab = new AutoBeacon(context);
         ab.start();
     }
 
