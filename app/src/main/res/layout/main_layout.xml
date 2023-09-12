@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#444444"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/subheader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:background="#444444"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="0dp"
+                android:paddingBottom="10dp"
+                android:text="APRS-TAK Settings"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/viewAPRSLog"
+            android:text="View APRSDroid Log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/darkButton"
+            android:padding="10dp"
+            />
+
+        <Switch
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Enable APRSDroid TNC"
+            android:id="@+id/TNC"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:checked="false"/>
+        <Switch
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Enable Encryption"
+            android:id="@+id/PSKSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:checked="false"/>
+        <EditText
+            android:id="@+id/PSKET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Enter Encryption Password"
+            android:inputType="textPersonName"
+            android:textColor="#000000" />
+        <EditText
+            android:id="@+id/frequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Set APRS Frequency field"
+            android:inputType="textPersonName"
+            android:textColor="#000000"
+            android:visibility="invisible"/>
+        <Switch
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Enable Auto Beacon"
+            android:id="@+id/autoBroadcast"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:checked="false"
+            android:visibility="invisible"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/Interval"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="Auto Beacon Interval\n(in minutes)"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="invisible"/>
+            <NumberPicker
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/autoBroadcastInterval"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+

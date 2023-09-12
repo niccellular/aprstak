@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">APRS-TAK</string>
+    <!-- description -->
+    <string name="app_desc">Send and receive CoT messages via APRSDroid</string>
+</resources>

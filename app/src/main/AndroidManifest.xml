@@ -1,0 +1,24 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.atakmap.android.aprstak.plugin">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <application 
+        android:allowBackup="false"
+        android:icon="@drawable/aprs"
+        android:label="@string/app_name"
+        android:description="@string/app_desc"
+
+        android:theme="@style/AppTheme" >
+        <meta-data android:name="plugin-api" android:value="${atakApiVersion}"/>
+        <meta-data android:name="app_desc" android:value="@string/app_desc"/>
+
+              <activity android:name="com.atakmap.app.component">  
+                  <intent-filter android:label="@string/app_name"> 
+                    <action android:name="com.atakmap.app.component" />  
+                  </intent-filter> 
+              </activity>
+
+    </application>
+
+</manifest>
