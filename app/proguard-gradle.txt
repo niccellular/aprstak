@@ -8,7 +8,7 @@
 -keepattributes SourceFile,LineNumberTable
 
 -applymapping <atak.proguard.mapping>
--repackageclasses atakplugin.PluginTemplate
+-repackageclasses atakplugin.aprstak
 
 -keepattributes *Annotation*
 -keepattributes Signature, InnerClasses
@@ -56,3 +56,20 @@
 # overcome an existing bug in the gradle subsystem (3.5.x)
 -keep class module-info
 
+# libcotshrink
+-keep class javax.** {*;}
+-keep class com.google.** {*;}
+-keep class com.siemens.** {*;}
+-keep class com.sun.** {*;}
+-keep class eo.view.** {*;}
+-keep class javax.** {*;}
+-keep class me.dm7.** {*;}
+-keep class org.apache.** {*;}
+-keep class org.w3c.** {*;}
+-keep class org.xml.** {*;}
+-keep class org.xmlpull.** {*;}
+
+
+-dontwarn org.xmlpull.**
+-dontwarn org.xml.sax.ContentHandler
+-dontwarn org.xml.sax.XMLReader

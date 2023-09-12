@@ -38,7 +38,7 @@ buildscript {
         return getProperty(urlKey, null) != null
     }
 
-    ext.takrepoUrl = getProperty(urlKey, 'http://localhost/')
+    ext.takrepoUrl = getProperty(urlKey, 'https://localhost/')
     ext.takrepoUser = getProperty('takrepo.user', 'invalid')
     ext.takrepoPassword = getProperty('takrepo.password', 'invalid')
     ext.takdevPlugin = getProperty('takdev.plugin', "${rootDir}/../../atak-gradle-takdev.jar")
@@ -59,7 +59,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.2'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         if(isDevKitEnabled()) {
             classpath "com.atakmap.gradle:atak-gradle-takdev:${takdevVersion}"
         } else {
@@ -129,11 +129,16 @@ def getVersionCode() {
 
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 33
+    buildToolsVersion "34.0.0"
 
    dexOptions {
         jumboMode = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     lintOptions {
@@ -289,6 +294,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
-    implementation 'com.paulmandal.atak:libcotshrink:1.0.2'
-    //implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    implementation 'com.paulmandal.atak:libcotshrink:1.0.3'
+
 }
+
