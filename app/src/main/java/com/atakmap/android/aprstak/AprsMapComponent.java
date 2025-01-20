@@ -28,8 +28,6 @@ import com.atakmap.comms.CommsMapComponent;
 import com.atakmap.comms.CotServiceRemote;
 import com.atakmap.coremap.cot.event.CotEvent;
 import com.atakmap.coremap.log.Log;
-import com.paulmandal.atak.libcotshrink.pub.api.CotShrinker;
-import com.paulmandal.atak.libcotshrink.pub.api.CotShrinkerFactory;
 
 import com.atakmap.android.aprstak.plugin.PluginLifecycle;
 
@@ -41,7 +39,6 @@ public class AprsMapComponent extends DropDownMapComponent implements AprsUtilit
 
     private AprsDropDownReceiver ddr;
     private MapView mapView;
-    private CotShrinker cotShrinker;
     private static APRSCotArray aprsCotArray;
     private AprsUtility aprsUtility;
     private APRSMessageHandler aprsMessageHandler;
@@ -86,18 +83,15 @@ public class AprsMapComponent extends DropDownMapComponent implements AprsUtilit
         //intentFilter.addAction("org.aprsdroid.app.MESSAGETX");
         intentFilter.addAction("org.aprsdroid.app.POSITION");
         intentFilter.addAction("org.aprsdroid.app.UPDATE");
-        pluginContext.registerReceiver(aprsDroidReceiver, intentFilter);
+        pluginContext.registerReceiver(aprsDroidReceiver, intentFilter, Context.RECEIVER_NOT_EXPORTED);
 
         ReadLogReceiver readMeReceiver = new ReadLogReceiver(view, context);
         registerReceiverUsingPluginContext(pluginContext, "aprs log receiver", readMeReceiver, ReadLogReceiver.SHOW_LOG);
 
-        CotShrinkerFactory cotShrinkerFactory = new CotShrinkerFactory();
-        CotShrinker cotShrinker = cotShrinkerFactory.createCotShrinker();
-        this.cotShrinker = cotShrinker;
 
         this.aprsCotArray = new APRSCotArray();
 
-        this.aprsMessageHandler = new APRSMessageHandler(cotShrinker);
+        this.aprsMessageHandler = new APRSMessageHandler(context);
     }
 
     public static APRSCotArray getAprsCotArray() {

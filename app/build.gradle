@@ -8,8 +8,8 @@
 
 buildscript {
 
-    ext.PLUGIN_VERSION = "1.0"
-    ext.ATAK_VERSION = "4.8.1"
+    ext.PLUGIN_VERSION = "3.0"
+    ext.ATAK_VERSION = "4.10.0"
 
     def takdevVersion = '2.+'
 
@@ -59,7 +59,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.4.2'
         if(isDevKitEnabled()) {
             classpath "com.atakmap.gradle:atak-gradle-takdev:${takdevVersion}"
         } else {
@@ -284,7 +284,8 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 26
+        targetSdkVersion 33
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86"
         }
@@ -294,7 +295,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
-    implementation 'com.paulmandal.atak:libcotshrink:1.0.3'
+    //implementation 'com.paulmandal.atak:libcotshrink:1.0.3'
 
+    // https://mvnrepository.com/artifact/com.siemens.ct.exi/exificient
+    implementation 'com.siemens.ct.exi:exificient:1.0.7'
 }
 
